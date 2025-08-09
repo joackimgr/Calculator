@@ -1,0 +1,80 @@
+body {
+    text-align: center;
+    font-family: 'Roboto', 'sans-serif';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+.calculator {
+    background-color: #1C1C1C;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex: 1;
+    max-width: 500px;
+    max-height: 800px;
+    height: 800px;
+    margin: auto;
+    border-radius: 1rem;
+}
+
+.display {
+    background-color: #505050;
+    display: flex;
+    justify-content: flex-end;
+    margin: 1.5rem auto 0rem;
+    padding: 0rem 1rem;
+    border-radius: 1rem;
+    color: white;
+    font-size: 2rem;
+    width: 85%;
+}
+
+.numbers button {
+    font-size: 3rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    width: 65px;
+    flex: 1;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.numbers button:hover {
+    background-color: #c4c3c3;
+}
+
+.numbers {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin: 2rem auto;
+    width: 90%;
+}
+
+.numbers .row {
+    display: flex;
+    justify-content: space-between   ;
+    gap: 1rem;
+    width: 100%;
+}
+
+.orange {
+    background-color: #FF9500;
+    transition: background-color 0.2s;
+}
+
+.calculator .numbers .row .orange:hover {
+    background-color: #d47e04;
+}
+
+#clear, #delete {
+    flex: 2
+}
