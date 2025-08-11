@@ -17,7 +17,7 @@ body {
     flex: 1;
     max-width: 500px;
     max-height: 800px;
-    height: 800px;
+    height: 780px;
     margin: auto;
     border-radius: 1rem;
 }
@@ -33,7 +33,11 @@ body {
     color: white;
     font-size: 2rem;
     width: 85%;
-    height: 5.5rem;
+    height: 7rem;
+}
+
+.display p {
+    font-size: 3.5rem;
 }
 
 .numbers button {
