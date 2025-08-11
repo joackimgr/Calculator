@@ -26,12 +26,14 @@ body {
     background-color: #505050;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     margin: 1.5rem auto 0rem;
     padding: 0rem 1rem;
     border-radius: 1rem;
     color: white;
     font-size: 2rem;
     width: 85%;
+    height: 5.5rem;
 }
 
 .numbers button {
