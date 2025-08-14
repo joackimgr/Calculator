@@ -61,3 +61,8 @@ equals.addEventListener("click", function() {
     let result = operate(firstNum, secondNum, currentOp);
     document.querySelector('p').textContent = result;
 })
+let del = document.getElementById('delete');
+del.addEventListener("click", () => {
+    let p = document.querySelector('p');
+    p.textContent = p.textContent.slice(0, -1);
+});
