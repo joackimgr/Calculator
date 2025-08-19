@@ -1,8 +1,14 @@
+let display = document.querySelector('.display p');
+let firstNum;
+let secondNum;
+let currentOp;
+let waitingForNumber = false;
+
 function sum(a, b) {
     return a + b;
 }
 
-function substract(a, b) {
+function subtract(a, b) {
     return a - b;
 }
 
@@ -11,6 +17,9 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
+    if (b === 0) {
+        return "Error!";
+    }
     return a / b;
 }
 
@@ -18,7 +27,7 @@ function operate(num1, num2, op) {
     if (op === "+") {
         return sum(num1, num2);
     } else if (op === "-") {
-        return substract(num1, num2);
+        return subtract(num1, num2);
     } else if (op === "×") {
         return multiply(num1, num2);
     } else if (op === "÷") {
@@ -27,39 +36,63 @@ function operate(num1, num2, op) {
 }
 
 function setOp(op) {
-    firstNum = parseInt(document.querySelector('p').textContent);
-    currentOp = op.textContent;
-    let p = document.querySelector('p');
-    p.innerHTML = '';
+    if (firstNum !== null && !waitingForNumber) {
+        secondNum = parseFloat(display.textContent);
+        let result = operate(firstNum, secondNum, currentOp);
+        updateDisplay(result);
+        firstNum = result;
+    } else {
+        firstNum = parseFloat(display.textContent);
+    }
+    currentOp = op;
+    waitingForNumber = true;
 }
 
-function addToDisplay(id) {
-    let p = document.querySelector('p');
-    let btn = document.getElementById(id);
-    let b = btn.textContent;
-    p.appendChild(document.createTextNode(b));
+function calculate() {
+    if (firstNum !== null && currentOp !== null && !waitingForNumber) {
+        secondNum = parseFloat(display.textContent);
+        let result = operate(firstNum, secondNum, currentOp);
+        updateDisplay(result);
+        firstNum = null;
+        secondNum = null;
+        currentOp = null;
+        waitingForNumber = true;
+    }
+}
+
+function updateDisplay(value) {
+    display.textContent = value;
+}
+
+function addToDisplay(value) {
+    if (display.textContent === "0" || waitingForNumber) {
+        display.textContent = value;
+        waitingForNumber = false;
+    } else {
+        display.textContent += value;
+    }
 }
 
 let num = document.querySelectorAll(".num");
 num.forEach(item => {
-    item.addEventListener("click", () => {addToDisplay(item.id)});
+    item.addEventListener("click", () => {addToDisplay(item.textContent)});
 });
 let clear = document.getElementById('clear');
 clear.addEventListener("click", () => {
-    let p = document.querySelector('p');
-    p.innerHTML = '';
+    updateDisplay("0");
+    firstNum = null;
+    secondNum = null;
+    currentOp = null;
+    waitingForNumber = false;
 })
-let firstNum;
-let currentOp;
+
 let op = document.querySelectorAll(".operator");
 op.forEach(item => {
-    item.addEventListener("click", () => {setOp(item)})
+    item.addEventListener("click", () => {setOp(item.textContent)})
 })
 let equals = document.getElementById('equals');
 equals.addEventListener("click", function() {
-    let secondNum = parseInt(document.querySelector('p').textContent);
-    let result = operate(firstNum, secondNum, currentOp);
-    document.querySelector('p').textContent = result;
+    calculate();
 })
 let del = document.getElementById('delete');
 del.addEventListener("click", () => {
